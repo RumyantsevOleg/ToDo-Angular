@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { MatButtonModule } from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {reducers} from "./store/redusers/index.reducer";
 
@@ -15,6 +16,7 @@ import {reducers} from "./store/redusers/index.reducer";
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    MatFormFieldModule,
     AppRoutingModule,
     StoreModule.forRoot(
       reducers,
