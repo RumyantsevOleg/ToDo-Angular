@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {InjectionToken, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +10,8 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {reducers} from "./store/redusers/index.reducer";
+import {reducers} from './store/redusers';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,10 +19,7 @@ import {reducers} from "./store/redusers/index.reducer";
     BrowserModule,
     MatFormFieldModule,
     AppRoutingModule,
-    StoreModule.forRoot(
-      reducers,
-      {}
-    ),
+    StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
@@ -31,7 +29,8 @@ import {reducers} from "./store/redusers/index.reducer";
     MatButtonModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -4,12 +4,14 @@
   <button (click)="clear()" mat-button color="warn">clear</button>
 </div>
 
-<span>Counter is: {{count$ | async}}; Update at: {{3234234324 | date: "dd.MM.yyyy (hh:mm:ss)"}}</span>
+<span
+  >Counter is: {{ count$ | async }}; Update at:
+  {{ 3234234324 | date: "dd.MM.yyyy (hh:mm:ss)" }}</span
+>
 
 <div>
-  <input type="text" >
+  <input type="text" (blur)="onInpBlur($event)" />
   <button (click)="updateOn()">+</button>
 </div>
-
 
 <router-outlet></router-outlet>
