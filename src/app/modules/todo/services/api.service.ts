@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(
-    private httpClient: HttpClient,
-  ) {
+  public getPlan(planNumber: string = "1"): Observable<any> {
+    return this.httpClient.get<any>(
+      `http://localhost:8081/api/plans/plan-id-${planNumber}`
+    );
   }
 
-  public getPlan(): Observable<any> {
-    return this.httpClient.get<any>('http://localhost:8081/api/plans/plan-id-1');
+  public getAllPlan (): Observable<any> {
+    return this.httpClient.get<any>('http://localhost:8081/api/plans')
   }
 }

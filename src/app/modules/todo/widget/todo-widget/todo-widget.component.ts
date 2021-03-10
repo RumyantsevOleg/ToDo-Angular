@@ -6,6 +6,7 @@ import { todoListSelector } from '../../store/todo.selectors';
 import { Observable, Subscription } from 'rxjs';
 import { TodoModel } from '../../model/todo.model';
 import { tap } from 'rxjs/operators';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-todo-widget',
@@ -15,8 +16,13 @@ import { tap } from 'rxjs/operators';
 export class TodoWidgetComponent implements OnInit, OnDestroy {
   public todoList: TodoModel[] = [];
   private subscriptions: Subscription[] = [];
+  public urlNum: string = '';
+  public planList: Array<any> = [];
 
-  constructor(private store$: Store<TodoState>) {}
+  constructor(
+    private store$: Store<TodoState>,
+    private apiService: ApiService
+  ) {}
 
   public ngOnInit(): void {
     this.subscriptions.push(
@@ -24,6 +30,13 @@ export class TodoWidgetComponent implements OnInit, OnDestroy {
         .pipe(select(todoListSelector))
         .subscribe((todoList) => (this.todoList = todoList))
     );
+
+    this.apiService
+      .getAllPlan()
+      .pipe()
+      .subscribe((list) => {
+        this.planList = list;
+      });
   }
 
   public ngOnDestroy(): void {
@@ -32,5 +45,10 @@ export class TodoWidgetComponent implements OnInit, OnDestroy {
 
   public onCreate(name: string): void {
     this.store$.dispatch(new TodoCreateAction({ name }));
+  }
+
+  handleInput(event: any) {
+    this.urlNum = event.target.value;
+    console.log(this.urlNum);
   }
 }
