@@ -1,5 +1,33 @@
-<h1>First</h1>
+<h1>Loader</h1>
 
-<a routerLink="/todo" class="go-todo">go todo</a>
+<button mat-button color="accent" (click)="startLoading()">
+  Start loading
+</button>
 
-<router-outlet></router-outlet>
+<mat-progress-bar
+  class="progress-bar"
+  mode="determinate"
+  [value]="progressBar1"
+></mat-progress-bar>
+
+<mat-divider></mat-divider>
+
+<mat-progress-bar
+  class="progress-bar"
+  mode="determinate"
+  [value]="progressBar2"
+></mat-progress-bar>
+
+<ng-container *ngIf="imgSrc">
+  <img [src]="imgSrc" alt="img" />
+  <span>We have answer</span>
+</ng-container>
+
+<input matInput placeholder="Ex. Pizza" value="Sushi"/>
+
+<input type="checkbox"/>
+
+<ng-container *ngIf="showTypingPanel">
+  some
+  <span *ngIf="isTyping$ | async">is typing...</span>
+</ng-container>

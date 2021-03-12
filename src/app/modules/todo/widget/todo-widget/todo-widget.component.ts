@@ -16,7 +16,7 @@ import { ApiService } from '../../services/api.service';
 export class TodoWidgetComponent implements OnInit, OnDestroy {
   public todoList: TodoModel[] = [];
   private subscriptions: Subscription[] = [];
-  public urlNum: string = '';
+  public urlNum: string = '1';
   public planList: Array<any> = [];
 
   constructor(

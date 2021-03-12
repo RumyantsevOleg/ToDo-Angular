@@ -1,3 +1,5 @@
 <p>URL params is: {{id}}</p>
 <p>{{time | date: 'dd:MM:yyyy'}} - is time since create plane {{id}}</p>
 <a routerLink="/">Back</a>
+<button (click)="onParallelRequest()">Send request (parallel)</button>
+<button (click)="onChainRequest()">Send request (chain)</button>
